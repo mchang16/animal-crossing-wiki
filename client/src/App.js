@@ -1,9 +1,17 @@
 import React from 'react';
+import {Button, Divider} from 'semantic-ui-react'
 import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-// look into proxy and fetch API
-// JSON
+import CardGrid from './Components/Grid.js';
+import Villagers from './Components/Villagers.js';
+
 
 class App extends React.Component{
   
@@ -13,47 +21,35 @@ class App extends React.Component{
       data: null
     };
   }
-  
-  componentDidMount(){
-    this.callBackend()
-      .then(res => this.setState({data:res.express}))
-      .catch(err => console.log(err));
-  }
-
-  callBackend = async () => {
-    const response = await fetch('http://localhost:5000/Michelle');
-    const body = response.json();
-    console.log(response);
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  }
-
+    
   render(){
     return(
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <h1>{this.state.data}</h1>    
+    <div>
+      <h1>Animal Crossing Wiki</h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to='/'> Home</Link>
+            </li>
+            <li>
+              <Link to='/villagers'> Villagers</Link>
+            </li>
+          </ul>
+        </nav>
+        <Route exact = {true} path='/' component={testHome}></Route>
+        <Route exact = {true} path='/villagers' component={Villagers}></Route>
     </div>
     
     );
-
   }
+}
+
+function testHome(){
+  return(
+    <div>
+      Hi, welcome to the unofficial guide to Animal Crossing!
+    </div>
+  );
 }
 
 export default App;
