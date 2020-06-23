@@ -51,7 +51,3 @@ class VillagerDropDown extends React.Component{
 }
 
 export default VillagerDropDown
-
-//if prevActive != currentActive{
-    //handleClick();  
-//}

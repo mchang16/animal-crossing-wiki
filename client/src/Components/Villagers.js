@@ -1,6 +1,12 @@
 import React from 'react';
 import {Grid, Item} from 'semantic-ui-react';
 import CardGrid from './Grid.js';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class Villagers extends React.Component{
 
@@ -37,6 +43,14 @@ class Villagers extends React.Component{
                 <h1>Villagers</h1>
               <div>
                 <CardGrid villagers = {this.state.villagerData}/>
+                {/* the props in render are the properties of this Villagers component, passed
+                from the previous routed route to here (which would be from App.js)*/}
+                {/* <Route
+                  path='/villagers'
+                  render={(props) => (
+                    <CardGrid villagers = {this.state.villagerData} {...props}/>
+                  )}
+                /> */}
               </div>
             </div>
         );
@@ -44,11 +58,3 @@ class Villagers extends React.Component{
 }
 
 export default Villagers
-
-
-// call fetch(/villagers)
-// setState with the data just fetched
-// for every data entry, create a VillageCard
-
-
-//Villagers -> Grid -> VillagerCard
