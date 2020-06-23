@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Divider} from 'semantic-ui-react'
+import {Button, Divider, Menu} from 'semantic-ui-react'
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -11,6 +11,7 @@ import {
 
 import CardGrid from './Components/Grid.js';
 import Villagers from './Components/Villagers.js';
+import VillagerModal from './Components/VillagerModal.js';
 
 
 class App extends React.Component{
@@ -21,23 +22,31 @@ class App extends React.Component{
       data: null
     };
   }
+
+  handleMenuChange(){
+    console.log("Clicked Yo")
+  }
     
   render(){
     return(
     <div>
       <h1>Animal Crossing Wiki</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'> Home</Link>
-            </li>
-            <li>
-              <Link to='/villagers'> Villagers</Link>
-            </li>
-          </ul>
-        </nav>
+        <Menu icon='labeled'>
+          <Menu.Item  onClick={() => {this.handleMenuChange()}}>
+            <Link to='/'> Home</Link>
+          </Menu.Item>          
+
+          <Menu.Item>
+            <Link to='/villagers'>Villagers</Link>
+          </Menu.Item>
+
+          <Menu.Item>
+            <Link to='/items'>Items</Link>
+          </Menu.Item>
+        </Menu>
         <Route exact = {true} path='/' component={testHome}></Route>
         <Route exact = {true} path='/villagers' component={Villagers}></Route>
+        <Route exact = {true} path='/items'></Route>
     </div>
     
     );

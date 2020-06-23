@@ -1,7 +1,14 @@
 import React from 'react';
-import {Grid, Button, Dropdown} from 'semantic-ui-react';
+import {Grid, Button, Dropdown, Modal} from 'semantic-ui-react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+  } from "react-router-dom";
 import VillagerCard from './VillagerCard.js'
 import VillagerDropDown from './VillagerDropDown.js'
+
 
 class CardGrid extends React.Component{
     constructor(props){
@@ -20,8 +27,7 @@ class CardGrid extends React.Component{
                 element.name = names[index];
                 return(
                     <Grid.Column>
-                        <VillagerCard name= {element.name} personality= {element.personality} image= {element.image_url} 
-                            species={element.species}/> 
+                         <VillagerCard villagerInfo={element}/> 
                     </Grid.Column>);
             });
             this.setState({villagerData: data});
@@ -30,17 +36,20 @@ class CardGrid extends React.Component{
     }
 
     handleSpeciesChange(data){
+        console.log("Changed");
         var species = data.value;
         var newVillagers = [];
 
         this.allVillagerData.forEach(villager => {
-            if(villager.props.children.props.species == species){
+            console.log(villager)
+            if(villager.props.children.props.villagerInfo.species == species){
                 newVillagers.push(villager);
             }
         })
+        // console.log(newVillagers);
         this.setState({villagerData: newVillagers})
     }
-    
+
     render(){
         return(
             <div>
@@ -51,8 +60,7 @@ class CardGrid extends React.Component{
                     <Grid columns={7}>
                         {this.state.villagerData}
                     </Grid>
-                </div>
-               
+                </div>       
             </div>
         );
     }
