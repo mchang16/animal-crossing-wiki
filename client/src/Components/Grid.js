@@ -21,14 +21,18 @@ class CardGrid extends React.Component{
     }
 
     componentDidUpdate(prevProps, prevState){
-        if(this.props.villagers !== prevProps.villagers){
-            var names = Object.keys(this.props.villagers[0]);
-            var data = Object.values(this.props.villagers[0]).map((element, index) => { 
-                element.name = names[index];
+
+         if(this.props.villagers !== prevProps.villagers){
+            var data = Object.values(this.props.villagers[0]).map((element) => { 
                 return(
                     <Grid.Column>
-                         <VillagerCard villagerInfo={element}/> 
-                    </Grid.Column>);
+                         <VillagerCard id = {element.id}villagerName={element.name['name-USen']} villagerPersonality = {element.personality}
+                         villagerImage = {element.image_uri} villagerGender = {element.gender}
+                         villagerSpecies = {element.species}
+                         villagerBirthday = {element.birthday} villagerCatchPhrase = {element['catch-phrase']}/> 
+                    </Grid.Column>
+                )
+                    
             });
             this.setState({villagerData: data});
             this.allVillagerData = data;
@@ -36,17 +40,14 @@ class CardGrid extends React.Component{
     }
 
     handleSpeciesChange(data){
-        console.log("Changed");
         var species = data.value;
         var newVillagers = [];
 
         this.allVillagerData.forEach(villager => {
-            console.log(villager)
-            if(villager.props.children.props.villagerInfo.species == species){
+            if(villager.props.children.props.villagerSpecies == species){
                 newVillagers.push(villager);
             }
         })
-        // console.log(newVillagers);
         this.setState({villagerData: newVillagers})
     }
 

@@ -1,29 +1,43 @@
 const express = require('express')
+const assert = require('assert');
 //{MongoClient} is just a variable from the export of 'mongodb' module
-const {MongoClient} = require('mongodb');
+const mongo = require('mongodb');
 const cors = require('cors')
 const app = express()
 const port = 5000
 
-//app.use(cors());
 
 var villagerData = null;
+const uri = "mongodb+srv://Pinkkirby:H833oK5tty@cluster0-x5tcn.mongodb.net/AnimalCrossingWiki?retryWrites=true&w=majority";
+
 
 // async function because we have to wait for it to connect to DB AND for the query
 
-async function run (){
-  const uri = "mongodb+srv://Pinkkirby:H833oK5tty@cluster0-x5tcn.mongodb.net/AnimalCrossingWiki?retryWrites=true&w=majority";
-  const client = await MongoClient.connect(uri, { useUnifiedTopology: true });
+//  async function run (){
+//   const client = await MongoClient.connect(uri, { useUnifiedTopology: true });
 
-  const collection = client.db("AnimalCrossingWiki").collection("Villager");
-  villagerData = await collection.find({}, {projection:{_id:0}}).toArray();
-  //console.log(villagerData)
-  client.close();
+//   const collection = await client.db("AnimalCrossingWiki").collection("Villager");
+//   villagerData = collection.find({}, {projection:{_id:0}}).toArray();
+//   client.close();
 
-}
-run();
+// }
+// run();
+
 
 app.get('/', (req, res) => res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }));
-app.get('/villagers', (req, res) => res.send(villagerData));
+app.get('/villagers', (request, response) => {
+  var resultArray = [];
+  mongo.connect(uri, function(err, client){
+    assert.equal(null, err);
+    var db = client.db("AnimalCrossingWiki");
+    var cursor = db.collection("Villager").find({}, {projection:{_id:0}}); 
+    cursor.forEach(function(doc, err){
+      resultArray.push(doc)
+    }, function(){
+      client.close()
+      response.send(resultArray);
+    })
+  })
+})
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

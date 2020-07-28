@@ -1,4 +1,5 @@
 import React from 'react'
+import {villagerData} from '../service.js';
 import {Modal, Image} from 'semantic-ui-react';
 import {
     BrowserRouter as Router,
@@ -8,23 +9,30 @@ import {
   } from "react-router-dom";
 
 class VillagerModal extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+
+        }
+    }
     render(){
         if(!this.props.show)
             return null
 
         return (
             <div>
+                
                 <Modal open closeIcon onClose={() => {this.props.handleModal()}}>
-                    <Modal.Header>{this.props.details.name}</Modal.Header>
+                    <Modal.Header>{this.props.villagerName}</Modal.Header>
                     <Modal.Content image>
-                        <Image  src={this.props.details.image_url}/>
+                        <Image  src={this.props.villagerImage}/>
                         <Modal.Description>
                             <ul>
-                                <li><b>Gender:</b> {this.props.details.gender}</li>
-                                <li><b>Species:</b> {this.props.details.species}</li>
-                                <li><b>Personality:</b> {this.props.details.personality}</li>
-                                <li><b>Birthday:</b> {this.props.details.birthday}</li>
-                                <li><b>Catchphrase:</b> {this.props.details.initial_phrase}</li>
+                                <li><b>Gender:</b> {this.props.villagerGender}</li>
+                                <li><b>Species:</b> {this.props.villagerSpecies}</li>
+                                <li><b>Personality:</b> {this.props.villagerPersonality}</li>
+                                <li><b>Birthday:</b> {this.props.villagerBirthday}</li>
+                                <li><b>Catchphrase:</b> {this.props.villagerCatchPhrase}</li>
                             </ul>
                         </Modal.Description>    
                     </Modal.Content>
