@@ -8,7 +8,7 @@ const port = 5000
 
 
 var villagerData = null;
-const uri = "mongodb+srv://Pinkkirby:H833oK5tty@cluster0-x5tcn.mongodb.net/AnimalCrossingWiki?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Pinkkirby:H{password}@cluster0-x5tcn.mongodb.net/AnimalCrossingWiki?retryWrites=true&w=majority";
 
 
 // async function because we have to wait for it to connect to DB AND for the query
