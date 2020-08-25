@@ -1,5 +1,6 @@
 import React from 'react';
 import {Grid, Button, Dropdown} from 'semantic-ui-react';
+import '../styling/dropdown.css'
 
 
 const species = [
@@ -44,7 +45,7 @@ class VillagerDropDown extends React.Component{
 
     render(){
         return(
-            <Dropdown placeholder="Select Species" selection options={species} 
+            <Dropdown className="drop" placeholder="Select Species" selection options={species} 
             onChange={(event,data) => this.props.onSpeciesChange(data)}/>
         );
     }

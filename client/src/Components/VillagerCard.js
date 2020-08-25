@@ -31,7 +31,7 @@ class VillagerCard extends React.Component{
          return(
              <div>
                  <Card raised onClick={() => this.handleModalToggle()}>
-                 <Image src={this.props.villagerImage}/>
+                    <Image src={this.props.villagerImage}/>
                  <Card.Content>
                      <Card.Header>{this.props.villagerName}</Card.Header>
                      <Card.Meta>{this.props.villagerPersonality}</Card.Meta>

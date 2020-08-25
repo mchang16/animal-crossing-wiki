@@ -14,8 +14,16 @@ async function villagerCall(){
   return body;
 }
 
-//villagerCall().then((response) => response.json()).then(data => console.log(data));
-// villagerCall().then((res) => console.log(res))
+async function clothingCall(){
+   const response = await fetch('http://acnhapi.com/v1/wallmounted/');
+   const body = response.json();
+
+   if(response.status !== 200){
+      throw Error(body.message);
+   }
+
+   return body;
+}
 
 
-export {villagerCall, villagerData};
+export {villagerCall,clothingCall, villagerData};
