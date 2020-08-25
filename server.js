@@ -12,7 +12,7 @@ var villagerData = null;
 // async function because we have to wait for it to connect to DB AND for the query
 
 async function run (){
-  const uri = "mongodb+srv://Pinkkirby:H833oK5tty@cluster0-x5tcn.mongodb.net/AnimalCrossingWiki?retryWrites=true&w=majority";
+  const uri = "mongodb+srv://Pinkkirby:{password}@cluster0-x5tcn.mongodb.net/AnimalCrossingWiki?retryWrites=true&w=majority";
   const client = await MongoClient.connect(uri, { useUnifiedTopology: true });
 
   const collection = client.db("AnimalCrossingWiki").collection("Villager");
