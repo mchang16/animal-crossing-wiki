@@ -1,0 +1,15 @@
+.navBar{
+    
+}
+
+.search{
+   width: 100%;
+}
+
+.input{
+   width: 100%;
+}
+
+.ui.icon.input>i.icon{
+   right: auto;
+}

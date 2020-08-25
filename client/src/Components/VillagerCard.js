@@ -1,4 +1,5 @@
 import React from 'react'
+import {villagerCall} from '../service.js';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import {
     BrowserRouter as Router,
@@ -14,6 +15,7 @@ class VillagerCard extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            villagerData: [],
             showModal: false,
         }
         this.handleModalToggle = this.handleModalToggle.bind(this);
@@ -26,18 +28,18 @@ class VillagerCard extends React.Component{
     }
     
     render(){
-        return(
-            <div>
-                <Card raised onClick={() => this.handleModalToggle()}>
-                <Image src={this.props.villagerInfo.image_url}/>
-                <Card.Content>
-                    <Card.Header>{this.props.villagerInfo.name}</Card.Header>
-                    <Card.Meta>{this.props.villagerInfo.personality}</Card.Meta>
-                </Card.Content>
-                </Card>
-                <VillagerModal details={this.props.villagerInfo} show={this.state.showModal} handleModal={this.handleModalToggle}/>
-            </div>   
-        );
+         return(
+             <div>
+                 <Card raised onClick={() => this.handleModalToggle()}>
+                    <Image src={this.props.villagerImage}/>
+                 <Card.Content>
+                     <Card.Header>{this.props.villagerName}</Card.Header>
+                     <Card.Meta>{this.props.villagerPersonality}</Card.Meta>
+                 </Card.Content>
+                 </Card>
+                 <VillagerModal {...this.props} show={this.state.showModal} handleModal={this.handleModalToggle}/>
+             </div>   
+         );
     }
 }
 
