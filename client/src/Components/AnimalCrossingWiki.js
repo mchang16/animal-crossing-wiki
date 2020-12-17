@@ -1,16 +1,10 @@
 import React from 'react'
 import {Button, Divider, Menu, Grid, Container} from 'semantic-ui-react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
-
-import HeaderComponent from './HeaderComponent.js';
+import HeaderComponent from './HeaderComponent.js'
 import NavMenu from './NavMenu.js'
-import Window from './Window'
+import Window from './Window.js'
+import Login from './Login.js'
+import {Link, BrowserRouter, Route} from 'react-router-dom'
 
 
 class AnimalCrossingWiki extends React.Component{
@@ -34,7 +28,16 @@ class AnimalCrossingWiki extends React.Component{
 				<Container>
 					<Grid padded> 
 						<Grid.Row>
-							<HeaderComponent/>
+							<Grid.Column width="8">
+								<h1>Animal Crossing Wiki</h1>
+							</Grid.Column>
+							
+							<Grid.Column width="8" textAlign="right">
+								<Link to="/login">
+									<button>Login</button>
+								</Link>
+								
+							</Grid.Column>
 						</Grid.Row>
 						<Grid.Row>
 							<NavMenu onCompChange = {this.handleCompChange.bind(this)}/>
@@ -42,9 +45,6 @@ class AnimalCrossingWiki extends React.Component{
 						<Grid.Row>
                      <Window current = {this.state.currentComponent}/>
 						</Grid.Row>
-						{/* <Route exact = {true} path='/' component={TestHome}></Route>
-						<Route exact = {true} path='/villagers' component={Villagers}></Route> */}
-						{/* <Route exact = {true} path='/items'></Route> */}
 					</Grid>
 				</Container>
 			</div>

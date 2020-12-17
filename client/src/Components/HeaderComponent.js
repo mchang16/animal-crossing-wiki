@@ -1,10 +1,19 @@
 import React from 'react'
-import {Header} from 'semantic-ui-react'
+import {Header, Grid} from 'semantic-ui-react'
 
 class HeaderComponent extends React.Component{
     render(){
         return(
-            <Header as='h1'>Animal Crossing Wiki</Header>
+            <div>
+               <Grid.Column width="8">
+								<h1>Animal Crossing Wiki</h1>
+							</Grid.Column>
+							
+							<Grid.Column width="8" textAlign="right">
+								<h1>Login</h1>
+							</Grid.Column>
+            </div>
+            
         )
     }
 }
